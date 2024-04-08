@@ -25,9 +25,11 @@ Gem::Specification.new do |spec|
     `git ls-files -z`.split("\x0").reject do |f|
       (File.expand_path(f) == __FILE__) ||
       f.match(%r{\A(?:test|spec|features)/}) ||
-      f == "gtimer.gemspec"  # この行を追加
+      f == "gtimer.gemspec" ||  # この行を追加
+      f == "gtimer-0.1.0.gem"  # この行を追加
     end
   end
+  puts spec.files
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
