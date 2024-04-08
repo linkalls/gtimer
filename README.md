@@ -1,31 +1,94 @@
+
 # Gtimer
 
-TODO: Delete this and the text below, and describe your gem
+Gtimerは、ブロック内の処理時間を計測するためのライブラリです。
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/gtimer`. To experiment with that code, run `bin/console` for an interactive prompt.
+## インストール
 
-## Installation
+RubyGemsを使用してインストールできます：
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+```sh
+gem install gtimer
+```
 
-Install the gem and add to the application's Gemfile by executing:
+または、Gemfileに以下の行を追加して、Bundlerを使用してインストールすることもできます：
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+```ruby
+gem 'gtimer'
+```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+## 使用方法
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+Gtimerを使用するには、まずgemをrequireします：
 
-## Usage
+```ruby
+require 'gtimer'
+```
 
-TODO: Write usage instructions here
+次に、`Gtimer::Timer.measure` メソッドを使用して、ブロック内の処理時間を計測します：
 
-## Development
+```ruby
+elapsed_time = Gtimer::Timer.measure do
+ # ここに計測したい処理を書く
+end
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+puts "処理時間: #{elapsed_time}秒"
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+## 実行例
 
-## Contributing
+以下は、`Gtimer::Timer.measure` メソッドを使用して、配列の要素を2倍にする処理の時間を計測する例です：
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/gtimer.
+```ruby
+require 'gtimer'
+
+array = (1..1000).to_a
+
+elapsed_time = Gtimer::Timer.measure do
+ array.map! { |x| x * 2 }
+end
+
+puts "配列の要素を2倍にする処理の時間: #{elapsed_time}秒"
+```
+例1: sleepメソッドの実行時間の計測
+
+```
+require 'gtimer'
+
+elapsed_time = Gtimer::Timer.measure do
+    sleep(1)
+end
+
+puts "sleep(1)の実行時間: #{elapsed_time}秒"
+```
+例2: 配列の要素を2倍にする処理の時間の計測
+```
+require 'gtimer'
+
+array = (1..1000).to_a
+
+elapsed_time = Gtimer::Timer.measure do
+    array.map! { |x| x * 2 }
+end
+
+puts "配列の要素を2倍にする処理の時間: #{elapsed_time}秒"
+```
+例3: ファイルの読み込み時間の計測
+```
+require 'gtimer'
+
+elapsed_time = Gtimer::Timer.measure do
+    File.read('large_file.txt')
+end
+
+puts "large_file.txtの読み込み時間: #{elapsed_time}秒"
+```
+
+
+## 貢献
+
+バグレポートやプルリクエストは、GitHubのリポジトリに投稿してください。
+
+## ライセンス
+
+このプロジェクトはMITライセンスの下で提供されています。詳細は `LICENSE` ファイルを参照してください。
