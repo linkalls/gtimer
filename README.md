@@ -28,7 +28,7 @@ require 'gtimer'
 次に、`Gtimer::Timer.measure` メソッドを使用して、ブロック内の処理時間を計測します：
 
 ```ruby
-elapsed_time = Gtimer::Timer.measure do
+elapsed_time = Gtimer::Set.timer do
  # ここに計測したい処理を書く
 end
 
@@ -37,14 +37,14 @@ puts "処理時間: #{elapsed_time}秒"
 
 ## 実行例
 
-以下は、`Gtimer::Timer.measure` メソッドを使用して、配列の要素を2倍にする処理の時間を計測する例です：
+以下は、`Gtimer::Set.timer` メソッドを使用して、配列の要素を2倍にする処理の時間を計測する例です：
 
 ```ruby
 require 'gtimer'
 
 array = (1..1000).to_a
 
-elapsed_time = Gtimer::Timer.measure do
+elapsed_time = Gtimer::Set.timer do
  array.map! { |x| x * 2 }
 end
 
@@ -55,7 +55,7 @@ puts "配列の要素を2倍にする処理の時間: #{elapsed_time}秒"
 ```
 require 'gtimer'
 
-elapsed_time = Gtimer::Timer.measure do
+elapsed_time = Gtimer::Set.timer do
     sleep(1)
 end
 
@@ -67,7 +67,7 @@ require 'gtimer'
 
 array = (1..1000).to_a
 
-elapsed_time = Gtimer::Timer.measure do
+elapsed_time = Gtimer::Set.timer do
     array.map! { |x| x * 2 }
 end
 
@@ -77,7 +77,7 @@ puts "配列の要素を2倍にする処理の時間: #{elapsed_time}秒"
 ```
 require 'gtimer'
 
-elapsed_time = Gtimer::Timer.measure do
+elapsed_time = Gtimer::Set.timer do
     File.read('large_file.txt')
 end
 
